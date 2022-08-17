@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom';
 import { FormGroup, Input, Label, Form, Button } from 'reactstrap';
 
 export default class NoteCreate extends Component {
@@ -8,7 +9,8 @@ export default class NoteCreate extends Component {
             newNote: {
                 title: "",
                 body: ""
-            }
+            },
+            submitted: false,
         }
     }
 
@@ -20,6 +22,7 @@ export default class NoteCreate extends Component {
 
     handleSubmit = () => {
         this.props.newNote(this.state.newNote)
+        this.setState({ submitted: true })
     }
 
 
@@ -57,6 +60,7 @@ export default class NoteCreate extends Component {
       >
         Submit
       </Button>
+      { this.state.submitted && <Redirect to="/" /> }
       </>
     )
   }

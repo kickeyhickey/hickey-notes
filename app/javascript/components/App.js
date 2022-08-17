@@ -52,6 +52,42 @@ class App extends Component {
     }
   };
 
+  updateNote = async (note, id) => {
+    try {
+      const response = await fetch(`/notes/${id}`, {
+        body: JSON.stringify(note),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "PATCH",
+      });
+      if (response.status !== 200 && response.status !== 304) {
+        alert("There is something wrong with your note submssion.");
+        return;
+      }
+      this.readNotes();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+
+  deleteNote = async (id) => {
+    try {
+      const response = await fetch(`/notes/${id}`, {
+        method: "DELETE",
+      });
+      if (response.status !== 200 && response.status !== 304) {
+        alert("There is something wrong with your note submssion.");
+        return;
+      }
+      this.readNotes();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   render() {
     console.log(this.state.notesArray);
@@ -71,7 +107,7 @@ class App extends Component {
               const id = props.match.params.id
               const note = this.state.notesArray.find(note => note.id === +id)
               return (
-                <NoteShow note={note} id={id} />
+                <NoteShow note={note} id={id} deleteNote={this.deleteNote} />
               )
             }}
           />
@@ -80,7 +116,7 @@ class App extends Component {
               const id = props.match.params.id
               const note = this.state.notesArray.find(note => note.id === +id)
               return (
-                <NoteUpdate note={note} id={id} />
+                <NoteUpdate note={note} id={id} updateNote={this.updateNote} />
               )
             }}
           />
