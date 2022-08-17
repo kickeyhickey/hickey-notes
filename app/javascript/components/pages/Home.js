@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Button } from 'reactstrap';
+import { Button, Card, CardBody, CardText, CardTitle } from 'reactstrap';
 
 class Home extends Component {
   render() {
@@ -11,10 +11,22 @@ class Home extends Component {
       {this.props.notesArray.map((note, id) => {
         return (
           <div key={id}>
-            <NavLink to={`/noteshow/${note.id}`}>
-              <h2>{note.title}</h2>
-              <p>{note.body}</p>
+              <Card
+              style={{
+                width: '35rem'
+              }}
+              >
+                <NavLink to={`/noteshow/${note.id}`}>
+                <CardBody>
+                  <CardTitle tag="h5">
+                  {note.title}
+                  </CardTitle>
+                   <CardText>
+                   {note.body}
+                   </CardText>
+                </CardBody>
             </NavLink>
+              </Card>
           </div>
           )
         })}
@@ -24,9 +36,6 @@ class Home extends Component {
           color='success'
           >Create Note</Button>
         </NavLink>
-        {/* <NoteCreate 
-          noteCreate={this.props.noteCreate}
-        /> */}
       </>
     )
   }
