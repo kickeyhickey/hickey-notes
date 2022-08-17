@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Button } from 'reactstrap';
-import NoteCreate from './NoteCreate';
 
 class Home extends Component {
   render() {
@@ -19,8 +18,11 @@ class Home extends Component {
           </div>
           )
         })}
-        <NavLink to='/notecreate'>
-        <Button>Create Note</Button>
+        <NavLink 
+          to='/notecreate'>
+        <Button
+          color='success'
+          >Create Note</Button>
         </NavLink>
         {/* <NoteCreate 
           noteCreate={this.props.noteCreate}
