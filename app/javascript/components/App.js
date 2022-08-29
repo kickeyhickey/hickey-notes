@@ -10,6 +10,7 @@ import Home from './pages/Home'
 import NoteCreate from './pages/NoteCreate'
 import NoteShow from './pages/NoteShow'
 import NoteUpdate from './pages/NoteUpdate'
+import Tag from './pages/Tag'
 
 class App extends Component {
   constructor(props) {
@@ -126,6 +127,7 @@ class App extends Component {
               newNote={this.newNote} />
            )}
           />
+          <Route path="/tag" component={Tag} />
         </Switch>
       </Router>
     </>

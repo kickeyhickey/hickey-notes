@@ -6,7 +6,7 @@ class NotesController < ApplicationController
     end
 
     def show
-        note = Note.find(params[:id])
+        note = Note.find(params[:id]).as_json(include: :tags)
         render json: note
     end
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect, NavLink } from 'react-router-dom'
 import { Button } from 'reactstrap'
-
+import Tag from './Tag'
 export default class NoteShow extends Component {
     constructor(props) {
         super(props)
@@ -41,7 +41,7 @@ export default class NoteShow extends Component {
     
 
   render() {
-    console.log("SHOW", this.props.id);
+    console.log("HERELL",this.props.id);
     const {
         title,
         body
@@ -52,6 +52,7 @@ export default class NoteShow extends Component {
             <strong>{title}</strong>
         </h2>
         <p>{body}</p>
+        <Tag id={this.props.id} />
         <NavLink
           to={`/noteupdate/${this.props.id}`} >
           <Button
