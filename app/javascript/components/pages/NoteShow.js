@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Redirect, NavLink } from 'react-router-dom'
 import { Button } from 'reactstrap'
-import Tag from './Tag'
+import TagShow from './TagShow'
+import './NoteShow.css'
 export default class NoteShow extends Component {
     constructor(props) {
         super(props)
         this.state = {
             note: {
             title: "",
-            body: ""
+            body: "",
+            tags: [],
             },
             submitted: false,
         }
@@ -41,18 +43,20 @@ export default class NoteShow extends Component {
     
 
   render() {
-    console.log("HERELL",this.props.id);
+    console.log("TAGS",this.state.note.tags);
     const {
         title,
         body
     } = this.state.note
+
+
     return (
-      <>
+      <div className='noteshow-container'>
         <h2>
             <strong>{title}</strong>
         </h2>
         <p>{body}</p>
-        <Tag id={this.props.id} />
+        <div className='noteshow-buttons'>
         <NavLink
           to={`/noteupdate/${this.props.id}`} >
           <Button
@@ -66,8 +70,12 @@ export default class NoteShow extends Component {
         onClick={this.handleDelete}>
             Delete
         </Button>
+          </div>
+        <div className='note-tagshow-container'>
+         <TagShow tags={this.state.note.tags} />
+        </div>
         {this.state.submitted && <Redirect to={'/'} /> }
-      </>
+      </div>
     )
   }
 }

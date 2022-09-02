@@ -6,12 +6,13 @@ class TagsController < ApplicationController
     end
 
     def show
-        tag = Tag.find(params[:id])
+        tag = Tag.find(params[:id]).as_json(include: :notes)
         render json: tag
     end
 
     def create
-        tag = tag.create(tag_params)
+        note = Note.find(params[:note_id])
+        tag = note.tags.create(tag_params)
 
         if tag.valid?
             render json: tag
@@ -22,7 +23,6 @@ class TagsController < ApplicationController
 
 private
     def tag_params 
-        params.require(:tag).permit(:name)
+        params.require(:tag).permit(:name, )
     end
-
 end

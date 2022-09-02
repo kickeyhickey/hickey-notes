@@ -36,6 +36,12 @@ class Home extends Component {
           color='success'
           >Create Note</Button>
         </NavLink>
+        <NavLink
+          color='success'
+          to='tagindex'
+          >
+            All Tags
+          </NavLink>
       </>
     )
   }

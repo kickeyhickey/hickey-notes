@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 
 export default class Tag extends Component {
     constructor(props) {
@@ -9,15 +10,13 @@ export default class Tag extends Component {
     }
 
     componentDidMount() {
-        this.readTags(this.props.id)
+        this.readTags()
       }
       
-      readTags = async (id) => {
-        console.log("ID",id);
+      readTags = async () => {
         try {
-          const response = await fetch(`/notes/${id}`)
-          const note = await response.json()
-          const tags = note.tags
+          const response = await fetch(`/tags`)
+          const tags = await response.json()
           this.setState({ tagsArray: tags })
         } catch (error) {
           console.errors(error);
@@ -25,14 +24,13 @@ export default class Tag extends Component {
       }
 
   render() {
-    console.log("LOOK HERE!!!!!", this.props.id);
     return (
       <>
       {this.state.tagsArray.map(tag => {
         return (
-            <div>
-                <p>{tag.name}</p>
-            </div>
+          <div className='container'>
+              <p>{tag.name}</p>
+          </div>
         )
       })}
       </>
