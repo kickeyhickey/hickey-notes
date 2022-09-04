@@ -1,39 +1,58 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import {
+  NavLink,
+  Redirect
+} from 'react-router-dom'
+import { Button } from 'reactstrap'
 
-export default class Tag extends Component {
+export default class TagIndex extends Component {
     constructor(props) {
-        super(props)
-        this.state = {
-            tagsArray:[]
-        }
+      super(props)
+      this.state = {
+        submitted:false
+      }
     }
 
-    componentDidMount() {
-        this.readTags()
-      }
-      
-      readTags = async () => {
-        try {
-          const response = await fetch(`/tags`)
-          const tags = await response.json()
-          this.setState({ tagsArray: tags })
-        } catch (error) {
-          console.errors(error);
-        }
-      }
+  handleDelete = (id) => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this patient profile?"
+      ) === true
+    ) {
+      this.props.deleteTag(id)
+      this.setState({ submitted: true });
+    }
+  };
+
+
 
   render() {
     return (
       <>
-      {this.state.tagsArray.map(tag => {
+      <h1>tagindex</h1>
+      <div className='tagshow-container' >
+      {this.props.tagsArray.map((tag, idx) => {
         return (
-          <div className='container'>
-              <p>{tag.name}</p>
-          </div>
+          <NavLink
+          key={idx}
+          to={`/tagnoteindex/${tag.id}`} >
+            <Button
+              className='tag-button'
+              color='info'
+              >{tag.name}
+              </Button>
+              <Button
+                color='danger'
+                onClick={() => this.handleDelete(tag.id)}>
+                  Delete Tag
+                </Button>
+
+                {this.state.submitted && <Redirect to="/tagindex" /> }
+          </NavLink>
         )
-      })}
-      </>
+      })} 
+      </div>
+        </>
     )
   }
 }

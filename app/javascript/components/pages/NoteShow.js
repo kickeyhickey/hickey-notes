@@ -43,7 +43,6 @@ export default class NoteShow extends Component {
     
 
   render() {
-    console.log("TAGS",this.state.note.tags);
     const {
         title,
         body

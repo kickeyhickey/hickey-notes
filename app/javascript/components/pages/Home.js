@@ -4,7 +4,6 @@ import { Button, Card, CardBody, CardText, CardTitle } from 'reactstrap';
 
 class Home extends Component {
   render() {
-    console.log("HERE",this.props.notesArray);
     return(
       <>
       <h3>This is the Home Page</h3>

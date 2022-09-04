@@ -21,8 +21,14 @@ class TagsController < ApplicationController
         end
     end
 
+    def destroy
+        tag = Tag.find(params[:id])
+        tag.destroy
+        render json: tag
+    end
+
 private
     def tag_params 
-        params.require(:tag).permit(:name, )
+        params.require(:tag).permit(:name )
     end
 end
