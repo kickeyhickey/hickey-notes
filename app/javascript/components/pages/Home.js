@@ -4,7 +4,6 @@ import { Button, Card, CardBody, CardText, CardTitle } from 'reactstrap';
 
 class Home extends Component {
   render() {
-    console.log("HERE",this.props.notesArray);
     return(
       <>
       <h3>This is the Home Page</h3>
@@ -36,6 +35,12 @@ class Home extends Component {
           color='success'
           >Create Note</Button>
         </NavLink>
+        <NavLink
+          color='success'
+          to='tagindex'
+          >
+            All Tags
+          </NavLink>
       </>
     )
   }

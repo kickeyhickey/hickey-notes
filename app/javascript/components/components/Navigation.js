@@ -13,6 +13,9 @@ class Navigation extends Component {
           <NavItem>
             <NavLink to="/about" className="nav-link">About Us</NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink to="/tagindex" className="nav-link">Tags Index</NavLink>
+          </NavItem>
         </Nav>
       </>
     )
