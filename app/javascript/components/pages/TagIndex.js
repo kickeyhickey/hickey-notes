@@ -33,6 +33,7 @@ export default class TagIndex extends Component {
       <div className='tagshow-container' >
       {this.props.tagsArray.map((tag, idx) => {
         return (
+          <div>
           <NavLink
           key={idx}
           to={`/tagnoteindex/${tag.id}`} >
@@ -41,16 +42,16 @@ export default class TagIndex extends Component {
               color='info'
               >{tag.name}
               </Button>
+              </NavLink>
               <Button
                 color='danger'
                 onClick={() => this.handleDelete(tag.id)}>
                   Delete Tag
                 </Button>
-
-                {this.state.submitted && <Redirect to="/tagindex" /> }
-          </NavLink>
+              </div>
         )
       })} 
+      {this.state.submitted && <Redirect to="/tagindex" /> }
       </div>
         </>
     )

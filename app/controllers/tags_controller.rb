@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
 
     def index
-        tags = Tag.all
+        tags = Tag.all.as_json(include: :notes)
         render json: tags
     end
 
@@ -29,6 +29,6 @@ class TagsController < ApplicationController
 
 private
     def tag_params 
-        params.require(:tag).permit(:name )
+        params.require(:tag).permit(:name, :note_id, :id )
     end
 end
