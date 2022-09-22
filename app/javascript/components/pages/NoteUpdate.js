@@ -30,7 +30,7 @@ handleSubmit = () => {
     console.log(this.state.updateNote);
     return (
       <>
-        <Form>
+        {/* <Form>
           <FormGroup>
             <Label>Title</Label>
             <Input
@@ -56,8 +56,8 @@ handleSubmit = () => {
           onClick={this.handleSubmit} >
             Update
           </Button>
-        </Form>
-      { this.state.submitted && <Redirect to={`/noteshow/${this.props.note.id}`} /> }
+        </Form> */}
+      {/* { this.state.submitted && <Redirect to={`/noteshow/${this.props.note.id}`} /> } */}
       </>
     )
   }

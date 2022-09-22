@@ -3,6 +3,8 @@ import { Redirect, NavLink } from 'react-router-dom'
 import { Button } from 'reactstrap'
 import TagShow from './TagShow'
 import './NoteShow.css'
+import TagCreate from './TagCreate'
+import TagNoteIndex from './TagNoteIndex'
 export default class NoteShow extends Component {
     constructor(props) {
         super(props)
@@ -10,7 +12,7 @@ export default class NoteShow extends Component {
             note: {
             title: "",
             body: "",
-            tags: [],
+            tags: []
             },
             submitted: false,
         }
@@ -71,7 +73,9 @@ export default class NoteShow extends Component {
         </Button>
           </div>
         <div className='note-tagshow-container'>
-         <TagShow tags={this.state.note.tags} />
+         <TagShow tags={this.state.note.tags} note_id={this.props.id} newTag={this.props.newTag}/> 
+         <TagCreate note_id={this.props.id} />
+
         </div>
         {this.state.submitted && <Redirect to={'/'} /> }
       </div>

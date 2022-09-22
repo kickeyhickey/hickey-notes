@@ -11,27 +11,31 @@ export default class TagNoteIndex extends Component {
         }
     }
 
-  componentDidMount() {
-    this.fetchNtagById(this.props.id)
-}
+//   componentDidMount() {
+//     this.fetchTagById(this.props.id)
+// }
 
-fetchNtagById = async (id) => {
-    try {
-        const response = await fetch(`/tags/${id}`)
-        const tag = await response.json()
-        this.setState({ tag: tag })
-    } catch (error) {
-        console.error(error);
-    }
-}
+// fetchTagById = async (id) => {
+//     try {
+//         const response = await fetch(`/notes/${id}/tags`)
+//         const tag = await response.json()
+//         this.setState({ tag: tag })
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+
   render() {
+    // console.log("THIS",this.state.tag.name);
+    console.log("tag",this.props.tag);
+    // console.log(this.state.tag);
     return (
       <>
-      <div>TagNoteIndex</div>
-        <p>{this.state.tag.name}</p>
-        {this.state.tag.notes.map((note, id) => {
+      <h1>tagnote</h1>
+      <div>{this.props.tag.name}</div>
+        {this.props.tag.notes.map((note, id) => {
           return (
-            <div>
+            <div key={id}>
             <p>{note.title}</p>
             <p>{note.body}</p>
             </div>

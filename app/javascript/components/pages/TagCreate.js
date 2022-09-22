@@ -7,11 +7,30 @@ export default class TagCreate extends Component {
         super(props) 
         this.state = {
             newTag: {
-                name:""
+              name:""
             },
             submitted: false,
+          }
         }
-    }
+
+        updateTag = async (tag, note_id) => {
+          console.log("updateTag",tag, note_id);
+          try {
+            const response = await fetch(`/notes/${note_id}`, {
+              body: JSON.stringify(tag),
+              headers: {
+                "Content-Type": "application/json",
+              },
+              method: "PATCH",
+            });
+            if (response.status !== 200 && response.status !== 304) {
+              alert("There is something wrong with your note submssion.");
+              return;
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        };
 
 
   handleChange = (e) => {
@@ -21,39 +40,15 @@ export default class TagCreate extends Component {
   }
 
   handleSubmit = () => {
-    this.createTag(this.state.newTag)
-    this.setState({
-        newTag: {
-            name:""
-        }
-    })
+    console.log(this.updateTag("HELLO"));
+    // this.props.updateTag(this.state.newTag, this.props.note_id)
   }
 
-  createTag = async (newTag) => {
-    try {
-        const response = await fetch(`/notes/${this.props.id}/tags`, {
-            body: JSON.stringify(newTag),
-            headers: {
-                "Content-Type": "application/json",
-            },
-            method: "POST",
-        });
-        console.log("POST",response);
-        if (response.status !==200 && response.status !== 304) {
-            alert("there is something wrong with your patient submission.")
-        return
-        }
-        this.props.fetchNoteById(this.props.id)
-    } catch (error) {
-        console.error(error);
-    }
-  }
+
 
 
   render() {
     const { name } = this.state.newTag
-    console.log("NEWTAG", this.state.newTag.name);
-    console.log("ID!!", this.props.id);
     return (
       <Form>
         <FormGroup>
